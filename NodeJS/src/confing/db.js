@@ -7,6 +7,11 @@ let MYSQL_CONFIG = {
     port: '3306', // 默认端口
     database: 'myblog'
 }
+
+let REDIS_CONFIG = {
+    prot: 6379,
+    host: '127.0.0.1'
+}
 //配置
 if (env === 'dev') {
     MYSQL_CONFIG = {
@@ -15,6 +20,10 @@ if (env === 'dev') {
         password: '123456',
         port: '3306', // 默认端口
         database: 'myblog'
+    };
+    REDIS_CONFIG = {
+        prot: 6379,
+        host: '127.0.0.1'
     }
 }
 if (env === 'production') {
@@ -24,8 +33,13 @@ if (env === 'production') {
         password: '123456',
         port: '3306', // 默认端口
         database: 'myblog'
+    };
+    REDIS_CONFIG = {
+        prot: 6379,
+        host: '127.0.0.1'
     }
 }
 module.exports = {
-    MYSQL_CONFIG
+    MYSQL_CONFIG,
+    REDIS_CONFIG
 }

@@ -11,6 +11,13 @@ const getList = (author, keyword) => {
     return exec(sql)
 
 }
+const getDetails = (id) => {
+    let sql = "select * from blogs where 1=1 ";
+    if (id) {
+      sql += `and id="${id}"`;
+    }
+    return exec(sql);
+  };
 const newBlog = (blog = {}) => {
     let sql = `insert into blogs (title, content, createtime, author) VALUES ("${blog.title}", "${blog.content}", "${blog.createtime}" ,"${blog.author}");`
     return exec(sql)
@@ -30,5 +37,6 @@ module.exports = {
     getList,
     newBlog,
     updateBlog,
-    deleteBlog
+    deleteBlog,
+    getDetails
 }
