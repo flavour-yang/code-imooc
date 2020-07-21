@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>首页</h1>
+    <div id="blogs"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        const url = 'http://localhost:8080/api/blog/list'
+        var blogs = $('#blogs')
+        const replaceHtml = (res) => {
+            let wrapStr = '';
+            res.map(item => {
+                wrapStr += `<li><h3> <a href='http://localhost:8080/page/details.html?id=${item.id}' target="_blank">${item.title}</a></h3><p>${item.author}${item.createtime}</p><li>`
+            })
+            let wrap = `<ul>${wrapStr}</ul>`
+            return wrap
+        }
+        $.ajax({
+            url: url, type: 'GET', contentType: 'application/json', dataType: 'json', success: function (result) {
+                blogs.append($(replaceHtml(result.result))) 
+            },
+            error(e) {
+                console.log(e)
+            }
+        });
+    </script>
+
+</body>
+
+</html>

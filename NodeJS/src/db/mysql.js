@@ -6,14 +6,14 @@ const con = mysql.createConnection(MYSQL_CONFIG)
 
 function exec(sql) {
     return new Promise((resolve, reject) => {
-        con.query(sql, (err, reslut) => {
+        con.query(sql, (err, result) => {
             if (err) {
                 console.log(err)
                 reject(err)
                 return
             }
-            console.log(reslut)
-            resolve(reslut)
+            console.log(result)
+            resolve(result)
         })
     })
 
