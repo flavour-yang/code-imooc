@@ -1,6 +1,6 @@
 const { exec } = require('../db/mysql')
 const getList = (author, keyword) => {
-    let sql = 'select * from blogs where 1=1 '  // 1=1 特殊处当条件不存在时不会报错
+    let sql = 'select id,title,createtime,author  from blogs where 1=1 '  // 1=1 特殊处当条件不存在时不会报错
     if (author) {
         sql += `and author="${author}"`
     }

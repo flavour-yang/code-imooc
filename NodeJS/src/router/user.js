@@ -7,18 +7,18 @@ const handleUserRouter = (req, res) => {
     if (method === 'POST' && req.path === "/user/login") {
         // const { username, password } = req.query
         const { username, password } = req.body
-        const userReslut = login(
+        const userResult = login(
             username,
             password
         )
         if (username && password) {
-            return userReslut.then(reslut => {
-                if (reslut.length > 0) {
-                    req.session.username = reslut[0].username
-                    req.session.realname = reslut[0].realname
+            return userResult.then(result => {
+                if (result.length > 0) {
+                    req.session.username = result[0].username
+                    req.session.realname = result[0].realname
                     setVal(req.sessionId, req.session)
                     console.log('req.session is', req.session.username)
-                    // res.setHeader('Set-Cookie', `username=${reslut[0].username.trim()}; path=/; httpOnly; expires=${getCookieExpires()}`) //path 为根路径, httpOnly 只允许后端改cookie, expires 设置 cookie过期时间
+                    // res.setHeader('Set-Cookie', `username=${result[0].username.trim()}; path=/; httpOnly; expires=${getCookieExpires()}`) //path 为根路径, httpOnly 只允许后端改cookie, expires 设置 cookie过期时间
                     return new SuccessModel()
                 } else {
                     return new ErrorModel('登陆失败')
