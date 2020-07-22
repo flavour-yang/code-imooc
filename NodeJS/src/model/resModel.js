@@ -6,7 +6,7 @@ class BaseModel {
             message = null
         }
         if (data) {
-            this.data = data
+            this.result = data
         }
         if (message) {
             this.message = message
