@@ -44,18 +44,12 @@ const handleBlogRouter = (req, res) => {
   }
   // 添加博客
   if (method === "POST" && req.path === "/api/blog/new") {
-<<<<<<< HEAD
     const loginResult = loginCheck(req);
     if (loginResult) {
       return loginResult;
     }
     req.body.author = req.session.username
     req.body.createtime = +new Date()
-=======
-    if (loginCheck(req)) {
-      return loginCheck;
-    }
->>>>>>> a1d8c722fe1e9322f181755b2007dca730993aa8
     const blogResult = newBlog(req.body);
     return blogResult.then((result) => {
       return new SuccessModel(result);
