@@ -29,8 +29,9 @@ router.get("/list", (req, res, next) => {
       message: 0,
       data: result,
     });
+    // next();
   });
-  next();
+  
 });
 
 module.exports = router;
