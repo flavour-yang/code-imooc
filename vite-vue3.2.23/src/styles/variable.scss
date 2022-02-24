@@ -1,0 +1,72 @@
+//字颜色 l-less, m-more
+$color-text-d: #222f3f; //默认
+$color-text-l: #686b7a; //次要文字
+$color-text-ll: #9ea0a9; //辅助文字
+$color-text-lll: #c7c9d1; // 失效文字
+$color-line: #ededed; //辅助线
+$color-line-m: #cbcdd2; // 辅助线(深)
+$color-bg-sub: #222f3f; //辅助背景色
+$color-ui-d: #1558ac; // 辅助色
+$color-ui: #009aff; // 主ui色
+$color-ui-hover: #0081f2;
+
+$color-dio: #fffdee; //提示及边框
+$color-dio-l: rgb(240, 208, 127, 0.6); //提示及边框
+$color-warning: #ec3e36;
+$color-success: #52c41a;
+$color-white: #ffffff;
+$color-white-1: rgba(255, 255, 255, 0.1);
+$color-white-3: rgba(255, 255, 255, 0.3);
+$color-white-6: rgba(255, 255, 255, 0.6);
+$color-white-8: rgba(255, 255, 255, 0.8);
+$color-black: #000000;
+$color-black-3: rgba(0, 0, 0, 0.3);
+$color-black-5: rgba(0, 0, 0, 0.5);
+// 字体: s-small, l-large
+$font-size-ss: 10px;
+$font-size-s: 12px; //小
+$font-size-d: 14px; //默认
+$font-size-l: 16px;
+$font-size-title-s: 18px;
+$font-size-title: 20px;
+$font-size-title-l: 22px;
+
+//圆角
+$radius-d: 4px;
+$radius-6: 6px;
+$radius-20: 20px;
+$radius-25: 25px;
+$radius-30: 30px;
+// 主体宽度
+$main-width: 1155px;
+:export {
+  color-text-d: $color-text-d;
+  color-text-l: $color-text-l;
+  color-text-ll: $color-text-ll;
+  color-text-lll: $color-text-lll;
+  color-line: $color-line;
+  color-line-m: $color-line-m;
+  color-bg-sub: $color-bg-sub;
+  color-ui-d: $color-ui-d;
+  color-ui: $color-ui;
+  color-ui-hover: $color-ui-hover;
+  color-dio: $color-dio;
+  color-dio-l: $color-dio-l;
+  color-warning: $color-warning;
+  color-success: $color-success;
+  color-white: $color-white;
+  // 字体: s-small, l-large
+  font-size-ss: $font-size-ss;
+  font-size-s: $font-size-s;
+  font-size-d: $font-size-d;
+  font-size-l: $font-size-l;
+  font-size-title-s: $font-size-title-s;
+  font-size-title: $font-size-title;
+  font-size-title-l: $font-size-title-l;
+
+  //圆角
+  radius-d: $radius-d;
+
+  main-width: $main-width;
+  main-width-num: 1155
+}
