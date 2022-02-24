@@ -17,5 +17,20 @@ module.exports = {
 			'@': path.resolve(__dirname, './src')
 		})
 	),
-	devServer: overrideDevServer(watchAll())
+	devServer: overrideDevServer((config) => {
+		return {
+			...config,
+			proxy: {
+				'/api/': {
+					target: 'http://dev.jiatu.info:9216/',
+					changeOrigin: true
+					// ws: false,
+					// pathRewrite: {
+					// 	'^/app/v1': '/app/v1'
+					// },
+					// secure: false
+				}
+			}
+		}
+	})
 }

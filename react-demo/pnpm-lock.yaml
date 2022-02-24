@@ -12,6 +12,7 @@ specifiers:
   react-router: 6.2.1
   react-router-dom: 6.2.1
   react-scripts: 5.0.0
+  redux: ^4.1.2
   web-vitals: ^2.1.4
   webpackbar: ^5.0.2
 
@@ -25,6 +26,7 @@ dependencies:
   react-router: 6.2.1_react@17.0.2
   react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
   react-scripts: 5.0.0_react@17.0.2
+  redux: 4.1.2
   web-vitals: 2.1.4
 
 devDependencies:
@@ -8567,6 +8569,12 @@ packages:
     dependencies:
       indent-string: 4.0.0
       strip-indent: 3.0.0
+    dev: false
+
+  /redux/4.1.2:
+    resolution: {integrity: sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==}
+    dependencies:
+      '@babel/runtime': 7.17.2
     dev: false
 
   /regenerate-unicode-properties/10.0.1:
