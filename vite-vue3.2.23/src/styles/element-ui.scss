@@ -1,0 +1,10 @@
+
+.el-button--primary{
+    &:hover{
+        background-color: $color-ui-hover;
+    }
+}
+.el-button.is-plain:focus, .el-button.is-plain:hover{
+    color: $color-ui-hover;
+    border-color: $color-ui-hover;
+}
