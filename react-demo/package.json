@@ -25,9 +25,12 @@
   "devDependencies": {
     "customize-cra": "^1.0.0",
     "eslint": "^8.10.0",
+    "eslint-plugin-react": "^7.29.2",
     "husky": "^7.0.0",
     "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
     "react-app-rewired": "^2.1.11",
+    "stylelint": "^14.5.3",
     "webpackbar": "^5.0.2"
   },
   "eslintConfig": {
