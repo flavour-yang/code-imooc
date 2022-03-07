@@ -3,6 +3,7 @@
  * @Date: 2022-02-14 17:35:47
  * @Description:
  */
+import React from 'react'
 import Main from '@/pages/Main'
 import Course from '@/pages/Course'
 import Recommended from '@/pages/Recommended'

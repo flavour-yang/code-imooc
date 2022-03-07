@@ -3,15 +3,18 @@ module.exports = {
 		browser: true,
 		es2021: true,
 		commonjs: true,
-		amd: true
+		amd: true,
+		node: true
 	},
 	extends: ['eslint:recommended', 'plugin:react/recommended'],
 	parserOptions: {
 		ecmaFeatures: {
-			jsx: true
+			jsx: true,
+			// experimentalObjectRestSpread: true
 		},
 		ecmaVersion: 'latest',
-		sourceType: 'module'
+		sourceType: 'module',
+		parser: '@babel/eslint-parser',
 	},
 	plugins: ['react'],
 	rules: {

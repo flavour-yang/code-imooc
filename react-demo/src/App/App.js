@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css'
 import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import Layouts from '../layout'
