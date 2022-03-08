@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import routes from '@/routes'
 import { connect } from 'react-redux'
-import { appActions } from '@/store/reducer/app'
+import { appActions, getInstance } from '@/store/reducer/app'
 const Recommended = (props) => {
 	const location = useLocation()
 	const menus = routes.filter((route) => route.menu === 1)
@@ -19,6 +19,9 @@ const Recommended = (props) => {
 		console.log(props.count)
 		// appActions({ type: 'SET_APP', value: { count: count + 1 } })
 		props.appActions({ count: count + 1, sidebarCollapsed: !sidebarCollapsed })
+		props
+			.getInstance({ isbn: '9876543211111', type: '2d49ee6a-16e2-466e-88d3-1482c31d18b5', source: 'SUBMISSION' })
+			.then((res) => console.log({ res }))
 		// app()
 	}
 	return (
@@ -43,10 +46,11 @@ const Recommended = (props) => {
 		</div>
 	)
 }
-export default connect((state) => state.app, { appActions })(Recommended)
+export default connect((state) => state.app, { appActions, getInstance })(Recommended)
 
 Recommended.propTypes = {
 	count: PropTypes.number,
 	sidebarCollapsed: PropTypes.bool,
-	appActions: PropTypes.func
+	appActions: PropTypes.func,
+	getInstance: PropTypes.func
 }
