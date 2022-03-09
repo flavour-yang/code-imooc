@@ -7,6 +7,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd'
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom'
+import { Button } from 'antd'
 import routes from '../routes'
 import style from './index.module.css'
 const { Header, Content, Footer } = Layout
@@ -46,14 +47,21 @@ const Layouts = () => {
 	return (
 		<Layout className="layout" theme="light">
 			<Header theme="light" style={{ background: '#fff' }}>
-				<div className="logo" />
-				<Menu mode="horizontal" selectedKeys={[activeMenu]} onClick={(props) => menuClick(props)}>
-					{routes
-						.filter((route) => route.menu === 0)
-						.map((route) => (
-							<Menu.Item key={route.path}>{route.name}</Menu.Item>
-						))}
-				</Menu>
+				<div style={{ display: 'flex' }}>
+					<div className="logo" style={{ width: 120 }} />
+					<div style={{ flex: 1 }}>
+						<Menu mode="horizontal" selectedKeys={[activeMenu]} onClick={(props) => menuClick(props)}>
+							{routes
+								.filter((route) => route.menu === 0)
+								.map((route) => (
+									<Menu.Item key={route.path}>{route.name}</Menu.Item>
+								))}
+						</Menu>
+					</div>
+					<div style={{ width: 200 }}>
+						<Button type="link">登录</Button>
+					</div>
+				</div>
 			</Header>
 			<Content style={{ padding: '0 50px' }}>
 				<Breadcrumb>{breadcrumbItems}</Breadcrumb>

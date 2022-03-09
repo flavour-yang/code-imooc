@@ -11,13 +11,15 @@ const instance = axios.create({
 })
 
 const requestCallback = (config) => {
+	console.log({ requestConfig: config })
 	return config
 }
 const responseCallback = (response) => {
+	console.log({ response: response })
 	return response
 }
 
-instance.interceptors.request((config) => requestCallback(config))
-instance.interceptors.response((response) => responseCallback(response))
+instance.interceptors.request.use((config) => requestCallback(config))
+instance.interceptors.response.use((response) => responseCallback(response))
 
 export default instance
