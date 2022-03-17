@@ -5,11 +5,18 @@
 -->
 
 <template>
-	<a-table :columns="columns" :data-source="versionData" :rowKey="(record) => record.instance.id" :pagination="false">
+	<a-table
+		:row-selection="{ selectedRowKeys: versionChecked, onChange: onSelectChange }"
+		:columns="columns"
+		:data-source="versionData"
+		:rowKey="(record: any) => record.instance.id"
+		:pagination="false"
+	>
 	</a-table>
 </template>
 
 <script lang="ts">
+import { queryDetail } from '@/service/book/register'
 import { cloneDeep } from 'lodash'
 import moment from 'moment'
 import { defineComponent, reactive, computed, h, watch } from 'vue'
@@ -22,16 +29,28 @@ interface Render {
 }
 export default defineComponent({
 	setup() {
-		const stroe = useStore()
-		const data = reactive({})
-		const versionData = computed(() => stroe.state.bookRegister.versionData)
+		const store = useStore()
+		const data = reactive({ selectedRowKeys: [] })
+		const versionData: any = computed(() => store.state.bookRegister.versionData)
+		const versionChecked: any = computed(() => store.state.bookRegister.versionChecked)
 		const searchTitle = computed(() => {
-			const { type } = stroe.state.bookRegister.searchValues
+			const { type } = store.state.bookRegister.searchValues
 			switch (type) {
 				case 'usbn':
 					return 'USBN'
 				default:
 					return 'ISBN'
+			}
+		})
+
+		watch(versionChecked, (checked) => {
+			if (checked.length) {
+				const findChecked = versionData.value.find((item: any) => checked.includes(item.instance.id))
+				queryDetail({ source: 'SUBMISSION', instanceId: findChecked.instance.id }).then((res) => {
+					store.commit('bookRegister/SAVE_DATAS', {
+						instanceInfo: res
+					})
+				})
 			}
 		})
 		const columns = computed(() => {
@@ -201,7 +220,36 @@ export default defineComponent({
 			]
 		})
 
-		return { columns, versionData }
+		const onSelectChange = (keys: string[]) => {
+			const { type } = store.state.bookRegister.searchValues
+			if (keys.length === 0) {
+				store.commit('bookRegister/SAVE_DATAS', {
+					instanceId: '',
+					instanceInfo: null,
+					mainFormStack: [],
+					versionChecked: keys,
+					isJicun: false
+				})
+			} else if (type === '6') {
+				const vIndex = versionData.value.findIndex((item) => keys.indexOf(item.id) !== -1)
+				store.commit('bookRegister/SAVE_DATAS', {
+					versionChecked: keys,
+					instanceId: versionData.value[vIndex].id,
+					metaDataChecked: []
+				})
+				// resetForm()
+			} else {
+				const vIndex = versionData.value.findIndex((item) => keys.indexOf(item.instance.id) !== -1)
+				store.commit('bookRegister/SAVE_DATAS', {
+					versionChecked: keys,
+					instanceId: versionData.value[vIndex].instance.id,
+					metaDataChecked: []
+				})
+				// resetForm()
+			}
+		}
+
+		return { versionChecked, columns, versionData, onSelectChange }
 	}
 })
 </script>

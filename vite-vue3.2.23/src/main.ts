@@ -21,6 +21,7 @@ import 'ant-design-vue/dist/antd.css'
 
 // router
 import router from './router'
+
 // store
 import store from '@/store'
 createApp(App)

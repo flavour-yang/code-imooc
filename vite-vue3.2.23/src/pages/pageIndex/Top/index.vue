@@ -10,7 +10,7 @@
 				<a-select-option v-for="(k, v) of topSelect" :value="v"> {{ k }} </a-select-option>
 			</a-select>
 		</a-col>
-		<a-col :span="6"><a-input placeholder="" :value="topForm.text" @change="inputChange" id="text"/></a-col>
+		<a-col :span="6"><a-input placeholder="" :value="topForm.text" @change="inputChange" id="text" /></a-col>
 		<a-space style="margin-left: 10px">
 			<a-button type="primary" @click="onSearch">搜索</a-button>
 			<a-button type="primary"> 新建套装 </a-button>

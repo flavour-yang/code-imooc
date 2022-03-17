@@ -9,7 +9,8 @@ export default defineConfig({
     proxy: {
       '^/api': {
         // target: 'http://dev.jiatu.info:9216/api',
-        target: 'http://192.168.1.46//api',
+        target: 'http://47.97.32.162/api',
+        // target: 'http://192.168.1.46//api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

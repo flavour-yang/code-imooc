@@ -4,32 +4,81 @@
  * @Description: 
 -->
 <template>
-	<div class="input-blur">
-		<div class="input-out"><a-input placeholder="input placeholder" v-model:value="form.title" /></div>
-	</div>
 	<a-form :layout="formLayout" :model="form" ref="formRef">
-		<a-form-item
-			label="标题"
-			:label-col="formItemLayout.labelCol"
-			:wrapper-col="formItemLayout.wrapperCol"
-			name="title"
-		>
-			<a-input placeholder="input placeholder" v-model:value="form.title" />
-		</a-form-item>
+		<a-row gutter="12">
+			<a-col md="24" lg="24" xl="24" xxl="14">
+				<a-form-item
+					label="题名"
+					name="title"
+					class="formItem"
+					:label-col="formItemLayout.labelCol"
+					:wrapper-col="formItemLayout.wrapperCol"
+				>
+					<!-- :rules="noISBN ? [{ required: true, message: '请输入题名' }] : []" -->
+					<a-input placeholder="input placeholder" :disabled="disabled" v-model:value="form.title" />
+					<!-- :ref="(inputRef) => setCurrFoucs(inputRef)}" -->
+				</a-form-item>
+			</a-col>
+			<a-col md="24" lg="12" xl="12" :xxl="{ span: 10 }">
+				<a-form-item label="版次印次" className="{css.versionAndEdition}">
+					<a-form-item name="version" className="{css.formItem}">
+						<Input placeholder="版次" :disabled="disabled" v-model:value="form.version" />
+					</a-form-item>
+					<a-form-item name="edition" className="{css.formItem}">
+						<Input
+							:style="{ marginLeft: '6px' }"
+							placeholder="印次"
+							:disabled="disabled"
+							v-model:value="form.edition"
+						/>
+					</a-form-item>
+				</a-form-item>
+			</a-col>
+			<a-col lg="12" xl="16" :xxl="{ span: 8 }">
+				<a-row className="{css.rowItem}">
+					<!-- 	:normalize="normalizePrices" -->
+					<a-form-item
+						:rules="[{ max: 11, message: '整数位不能超过8位' }]"
+						label="定价"
+						name="retailPrice"
+						class="priceFormItem"
+					>
+						<Input
+							:disabled="
+								disabled ||
+								formRef.instance.priceType === 'NONE' ||
+								formRef.instance.priceType === 'NONE_ITEM' ||
+								formRef.instance.priceType === 'UNKNOWN'
+							"
+							:style="{ width: '100%' }"
+							v-model:value="form.retailPrice"
+						/>
+						<!-- 	:onBlur="priceFormat"
+							:onPressEnter="priceFormat" -->
+					</a-form-item>
+					<a-form-item label="" name="priceType" className="formItemBtn">
+						<Select :disabled="disabled" :showArrow="false" :style="{ width: '100%' }"> </Select>
+					</a-form-item>
+					<!-- 	{{ currencyOptions }} -->
+				</a-row>
+			</a-col>
+		</a-row>
+
 		<a-form-item
 			label="版次印次"
 			:label-col="formItemLayout.labelCol"
 			:wrapper-col="formItemLayout.wrapperCol"
 			name="version"
 		>
-			<a-input placeholder="input placeholder" v-model:value="form.version" />
+			<a-input placeholder="input placeholder" v-model:value="version" />
 		</a-form-item>
 		<a-button type="primary" html-type="submit" @click="onSubmit"> Submit </a-button>
 	</a-form>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
+import { computed, defineComponent, reactive, ref, toRefs, watch } from 'vue'
+import { useStore } from 'vuex'
 const formLayout = 'horizontal'
 const formItemLayout = {
 	labelCol: { span: 4 },
@@ -40,11 +89,14 @@ export default defineComponent({
 	setup() {
 		const formRef = ref()
 		const data = reactive({})
+		const store = useStore()
+		const instanceInfo = store.state.bookRegister.instanceInfo
 		let formData = reactive({
-			form: {
-				username: '',
-				password: ''
-			}
+			form: {}
+		})
+		watch(instanceInfo, () => {
+			debugger
+			formData.form = instanceInfo.instance
 		})
 		const onValuesChange = () => {}
 		const onSubmit = (values: any) => {
@@ -60,44 +112,17 @@ export default defineComponent({
 			console.log({ values })
 		}
 
-		return { ...toRefs(formData), formRef, formLayout, formItemLayout, onValuesChange, onSubmit }
+		const disabled =
+			!instanceInfo ||
+			(instanceInfo &&
+				instanceInfo.instance &&
+				instanceInfo.instance.own &&
+				!instanceInfo.instance.own.toLocaleUpperCase().includes('BOXUP') &&
+				!instanceInfo.instance.own.toLocaleUpperCase().includes('CHECKIN'))
+
+		return { ...toRefs(formData), formRef, formLayout, formItemLayout, onValuesChange, onSubmit, disabled }
 	}
 })
 </script>
 
-<style lang="scss">
-.input-blur {
-	height: 300px;
-	background: url('@/assets/pn.png') no-repeat center / cover;
-	overflow: auto;
-	.input-out {
-		width: 200px;
-		margin: 0 auto;
-		position: relative;
-		overflow: hidden;
-		margin-top: 100px;
-		height: 30px;
-		input {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			background-color: transparent;
-			color: red;
-			z-index: 2;
-		}
-		&::after{
-			content: '';
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			background: rgba(255,255,255,.3);
-			filter: blur(3px);
-			z-index: 1;
-		}
-	}
-}
-</style>
+<style lang="scss"></style>

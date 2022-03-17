@@ -7,13 +7,19 @@ interface State {
   instanceData: any[];
   versionData: any[],
   currentType: string,
-  searchValues: any
+  searchValues: any,
+  instanceId: string,
+  instanceInfo: any,
+  versionChecked: any[],
 }
 const state: State = {
   instanceData: [],
   versionData: [],
   currentType: '',
-  searchValues: { type: 'isbn', text: '' }
+  searchValues: { type: 'isbn', text: '' },
+  instanceId: '',
+  instanceInfo: null,
+  versionChecked: [],
 }
 
 const mutations = {

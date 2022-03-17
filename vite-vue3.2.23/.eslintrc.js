@@ -1,5 +1,5 @@
 module.exports = {
-	extends: ['plugin:vue/vue3-recommended', 'plugin:import/recommended', 'plugin:import/typescript'],
+	extends: ['plugin:vue/vue3-recommended', 'plugin:import/recommended', 'plugin:import/typescript', 'prettier'],
 	rules: {
 		'consistent-return': 0, // 1
 		'prefer-destructuring': 0, // 1
@@ -24,8 +24,5 @@ module.exports = {
 		'@typescript-eslint/no-unused-expressions': 0,
 		'@typescript-eslint/consistent-type-imports': 'off',
 		'@typescript-eslint/consistent-indexed-object-style': 'off'
-	},
-	parserOptions: {
-		parser: '@typescript-eslint/parser'
 	}
 }
