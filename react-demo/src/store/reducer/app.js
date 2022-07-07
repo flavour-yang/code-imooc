@@ -1,10 +1,9 @@
-import { fetchInstance } from '@/services'
-
 /*
  * @Author: Y
  * @Date: 2022-03-07 16:24:10
  * @Description: redux app
  */
+import { fetchInstance } from '@/services'
 
 const SET_APP = 'SET_APP'
 
@@ -23,18 +22,19 @@ export const getInstance = (params) => (dispatch, getState) => {
 	return new Promise((resolve, reject) => {
 		fetchInstance(params)
 			.then((response) => {
-				response.json().then((res) => {
-					const { data, code } = res
-					if (code === 'COMMON_200') {
-						console.log({ instanceList: getState().app.instanceList })
-						dispatch(appActions({ instanceList: data }))
-						console.log({ instanceList: getState().app.instanceList })
-						resolve(data)
-					} else {
-						const msg = data.msg
-						reject(msg)
-					}
-				})
+				// response.json().then((res) => {
+				const { data, code } = response
+				if (code === 'COMMON_200') {
+					console.log({ instanceList: getState().app.instanceList })
+					dispatch(appActions({ instanceList: data }))
+					appActions(appActions({ instanceList: data }))
+					console.log({ instanceList: getState().app.instanceList })
+					resolve(data)
+				} else {
+					const msg = data.msg
+					reject(msg)
+				}
+				// })
 			})
 			.catch((error) => {
 				reject(error)

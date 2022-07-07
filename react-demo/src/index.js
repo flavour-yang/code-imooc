@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from '@/App/App'
 import reportWebVitals from './reportWebVitals'
-import { Provider } from 'react-redux'
-import store from './store'
+// import { Provider } from 'react-redux'
+import { Provider } from 'mobx-react'
+// import store from './store'
+import store from './mobxStore'
 // import 'antd/dist/antd.css';
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
+			{/* <Provider store={stores}> */}
 			<App />
+			{/* </Provider> */}
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')

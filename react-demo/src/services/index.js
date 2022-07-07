@@ -12,7 +12,7 @@ export const fetchInstance = (data) => {
 		headers: {
 			'x-okapi-tenant': 'diku',
 			'x-okapi-token':
-				'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYW5ncnVpMDAxIiwidXNlcl9pZCI6ImM3OTkyNWMxLWI4YjQtNDRjOS1iODZiLTBjOWU3YTVjOGJmYiIsImlhdCI6MTY0NjI3MTEwNCwidGVuYW50IjoiZGlrdSJ9.pKd160bwwqGE2kvb4glMQ_gGlQyZQOL52iN3yG764nY'
+				'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJZMSIsInVzZXJfaWQiOiI5ZmFiNTAyMS1lYmMwLTQ1YTYtOWQ0ZC1mYTZmZTZlOWNmNWUiLCJpYXQiOjE2NTQ1NzE3NDYsInRlbmFudCI6ImRpa3UifQ.tMD9cKEclqftE6w2zIc9iEJ-MGKAdsCmgdtHIKAWaXU'
 		}
 	})
 	// return postData('http://dev.jiatu.info:9216/api/jtlsp/capub/item/searchItemInstance', data)

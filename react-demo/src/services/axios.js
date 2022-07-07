@@ -16,6 +16,9 @@ const requestCallback = (config) => {
 }
 const responseCallback = (response) => {
 	console.log({ response: response })
+	if (response.data) {
+		return response.data
+	}
 	return response
 }
 
