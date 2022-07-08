@@ -202,6 +202,18 @@ const Recommended = (props) => {
 	const submit = (value) => {
 		console.log(value)
 	}
+	// react 自身获取 form 表单值
+	const onSubmit = (e) => {
+		e.preventDefault()
+		const formatForm = new FormData(e.target)
+		const value1 = formatForm.values()
+		let iteratorValue = value1.next()
+		while (!iteratorValue.done) {
+			console.log(iteratorValue.value)
+			iteratorValue = value1.next()
+		}
+		// console.log({ name: value1.next(), pass: value1.next(), formatForm })
+	}
 
 	return (
 		<div>
@@ -256,7 +268,7 @@ const Recommended = (props) => {
 			<div>
 				<CountDown time={1000 * 20}></CountDown>
 			</div>
-			<form onSubmit={submit}>
+			<form onSubmit={onSubmit} name="user-form">
 				<input type="text" name="username" />
 				<input type="password" name="password" />
 				<button type="submit">提交</button>
