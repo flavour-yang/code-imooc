@@ -1,5 +1,5 @@
 {
-  "name": "create-app",
+  "name": "react-app",
   "version": "0.1.1",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "axios": "^0.27.2",
     "mobx": "^6.6.1",
     "mobx-react": "^7.5.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hooks-count-down": "^0.1.15",

@@ -3,15 +3,20 @@
  * @Date: 2022-02-11 14:48:51
  * @Description:
  */
-const {
-	override,
-	addWebpackAlias,
-	addWebpackPlugin,
-	overrideDevServer,
-	addDecoratorsLegacy,
-} = require('customize-cra')
-const path = require('path')
-const WebpackBar = require('webpackbar')
+const { override, addWebpackAlias, addWebpackPlugin, overrideDevServer, addDecoratorsLegacy } = require('customize-cra');
+const path = require('path');
+const WebpackBar = require('webpackbar');
+const packageName = require('./package.json').name;
+const publicPathPlugin = (config) => {
+	config.output = {
+		library: 'react-app',
+		publicPath: '/',
+		libraryTarget: 'umd',
+		chunkLoadingGlobal: `webpackJsonp_${packageName}`
+	};
+	return config;
+};
+
 module.exports = {
 	webpack: override(
 		addDecoratorsLegacy(),
@@ -21,7 +26,8 @@ module.exports = {
 		addWebpackAlias({
 			page: path.resolve(__dirname, 'src/page'),
 			'@': path.resolve(__dirname, './src')
-		})
+		}),
+		publicPathPlugin
 	),
 	devServer: overrideDevServer((config) => {
 		return {
@@ -37,7 +43,10 @@ module.exports = {
 					// },
 					// secure: false
 				}
+			},
+			headers: {
+				'Access-Control-Allow-Origin': '*'
 			}
-		}
+		};
 	})
-}
+};
